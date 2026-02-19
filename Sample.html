@@ -432,4 +432,39 @@
             else Timer.start(); // Resume
         });
         document.getElementById('reset-btn').addEventListener('click', () => Timer.reset());
-        document.getElementById('dismiss-b
+        document.getElementById('dismiss-btn').addEventListener('click', () => Timer.dismissAlarm());
+
+        //sound Toggle UI Logic
+        const soundToggleBtn= document.getElementById('sound-toggle');
+        const soundknob = soundToggleBtn.querySelector('div');
+        let isSoundOn = true;
+
+        soundToggleBtn.addEventListener('click', () => {
+            isSoundOn = !isSoundOn;
+            AudioEngine.toggleMute();
+
+            if (isSoundOn) {
+                soundToggleBtn.classList.remove('bg-slate-600');
+                soundToggleBtn.classList.add('bg-cyan-500');
+                soundKnob.style.left = '28px';//Tailwind w-12 is 3rem (48px).Knob Is 16px. 48-16-4(padding)approx.
+                soundKnob.classList.remove('left-1');
+                soundKnob.classList.add('left-7');
+            } else {
+                soundToggleBtn.classList.remove('bg-cyan-500');
+                soundToggleBtn.classList.add('bg-slate-600');
+                soundKnob.classList.remove('left-7');
+                soundKnob.classList.add('left-1');
+            }
+        });
+
+        // Intialize
+        Timer.init();
+
+        // Request notification permission on load (browser policy might block until interaction, but we try)
+        if ("Notification" in window) {
+            Notification.requestPermission();
+        }
+
+    </script>
+</body>
+</html>    
