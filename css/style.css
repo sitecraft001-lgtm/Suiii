@@ -1,0 +1,507 @@
+/* ============================================
+   CHRONOPULSE - OFFLINE TIMER STYLES
+   Edit HTML only - Keep styles untouched
+   ============================================ */
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0f172a;
+    color: #e2e8f0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background Effects */
+.bg-effects {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.bg-blob {
+    position: absolute;
+    width: 24rem;
+    height: 24rem;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.2;
+}
+
+.bg-blob-1 {
+    top: -10%;
+    left: -10%;
+    background: #06b6d4;
+}
+
+.bg-blob-2 {
+    bottom: -10%;
+    right: -10%;
+    background: #a855f7;
+}
+
+/* Layout */
+.container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 28rem;
+    padding: 1.5rem;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
+    animation: slideUp 0.5s ease forwards;
+    animation-delay: 0.1s;
+    opacity: 0;
+}
+
+.logo {
+    font-size: 1.875rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    background: linear-gradient(to right, #22d3ee, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.logo-light {
+    font-weight: 300;
+    color: white;
+    -webkit-text-fill-color: white;
+}
+
+.tagline {
+    color: #94a3b8;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* Timer Card */
+.timer-card {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    animation: slideUp 0.5s ease forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
+}
+
+.timer-ring-container {
+    position: relative;
+    width: 16rem;
+    height: 16rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-ring {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.ring-bg {
+    fill: none;
+    stroke: #334155;
+    stroke-width: 8;
+}
+
+.ring-progress {
+    fill: none;
+    stroke: #22d3ee;
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 754;
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.35s;
+}
+
+.timer-display {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.time-text {
+    font-family: 'Courier New', monospace;
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    letter-spacing: -0.05em;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.status-text {
+    color: #22d3ee;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+}
+
+/* Controls Card */
+.controls-card {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    animation: slideUp 0.5s ease forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
+}
+
+/* Time Inputs */
+.input-section {
+    display: block;
+}
+
+.time-inputs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-label {
+    color: #94a3b8;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+}
+
+.time-input {
+    width: 100%;
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid #475569;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.time-input:focus {
+    border-color: #22d3ee;
+}
+
+/* Remove number spinners */
+.time-input::-webkit-inner-spin-button,
+.time-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Sound Toggle */
+.sound-toggle-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(30, 41, 59, 0.3);
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(71, 85, 105, 0.5);
+    margin-bottom: 1rem;
+}
+
+.sound-label-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.sound-icon {
+    padding: 0.5rem;
+    background: #334155;
+    border-radius: 9999px;
+    color: #22d3ee;
+}
+
+.sound-icon svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+.sound-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #cbd5e1;
+}
+
+.toggle-btn {
+    width: 3rem;
+    height: 1.5rem;
+    background: #22d3ee;
+    border-radius: 9999px;
+    position: relative;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.toggle-btn.muted {
+    background: #475569;
+}
+
+.toggle-knob {
+    width: 1rem;
+    height: 1rem;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 0.25rem;
+    left: 1.75rem;
+    transition: left 0.3s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.toggle-btn.muted .toggle-knob {
+    left: 0.25rem;
+}
+
+/* Buttons */
+.btn-start {
+    width: 100%;
+    background: linear-gradient(to right, #06b6d4, #2563eb);
+    color: white;
+    font-weight: 700;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 10px 15px -3px rgba(6, 182, 212, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.btn-start:hover {
+    transform: scale(1.02);
+    box-shadow: 0 20px 25px -5px rgba(6, 182, 212, 0.4);
+}
+
+.btn-start:active {
+    transform: scale(0.98);
+}
+
+/* Active Controls */
+.active-controls {
+    display: none;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.active-controls.show {
+    display: grid;
+}
+
+.btn-pause {
+    background: #334155;
+    color: white;
+    font-weight: 700;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    border: 1px solid #475569;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-pause:hover {
+    background: #475569;
+}
+
+.btn-reset {
+    background: rgba(239, 68, 68, 0.2);
+    color: #f87171;
+    font-weight: 700;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(239, 68, 68, 0.5);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-reset:hover {
+    background: rgba(239, 68, 68, 0.3);
+}
+
+/* Alarm Overlay */
+.alarm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(20px);
+    z-index: 50;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.alarm-overlay.show {
+    display: flex;
+}
+
+.alarm-visual {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.wave {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wave::before {
+    content: '';
+    position: absolute;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.wave-1::before {
+    background: rgba(6, 182, 212, 0.2);
+}
+
+.wave-2::before {
+    background: rgba(168, 85, 247, 0.2);
+    animation-delay: 0.2s;
+}
+
+.alarm-icon {
+    position: relative;
+    z-index: 10;
+    color: #22d3ee;
+    animation: ring 0.8s ease-in-out infinite;
+}
+
+.alarm-icon svg {
+    width: 8rem;
+    height: 8rem;
+}
+
+.alarm-title {
+    font-size: 3.75rem;
+    font-weight: 700;
+    color: white;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.5rem;
+}
+
+.alarm-subtitle {
+    color: #22d3ee;
+    font-size: 1.125rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+}
+
+.btn-dismiss {
+    padding: 1rem 3rem;
+    background: white;
+    color: #0f172a;
+    font-weight: 700;
+    font-size: 1.125rem;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 40px rgba(255,255,255,0.3);
+    transition: transform 0.2s;
+}
+
+.btn-dismiss:hover {
+    transform: scale(1.05);
+}
+
+/* Utilities */
+.hidden {
+    display: none !important;
+}
+
+/* Animations */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes ping {
+    75%, 100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+@keyframes ring {
+    0%, 100% { transform: rotate(0deg); }
+    10% { transform: rotate(15deg); }
+    20% { transform: rotate(-15deg); }
+    30% { transform: rotate(10deg); }
+    40% { transform: rotate(-10deg); }
+    50% { transform: rotate(5deg); }
+    60% { transform: rotate(-5deg); }
+}
+
+/* Status States */
+.status-running {
+    color: #4ade80 !important;
+    animation: pulse 2s infinite;
+}
+
+.status-paused {
+    color: #facc15 !important;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
